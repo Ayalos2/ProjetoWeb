@@ -31,5 +31,24 @@ async function carregarMoedas() {
     }
 }
 
-// Chama a função ao carregar a página
+document.getElementById('calcular').addEventListener('click', function() {
+    const valor = document.getElementById('valor').value;
+    const cmoeda = document.getElementById('cmoeda').value;
+    const pmoeda = document.getElementById('pmoeda').value;
+
+    const resultado = `${cmoeda} para ${pmoeda}`;
+    const valorConvertido = `${valor}`;
+
+    console.log(resultado);
+    console.log(valorConvertido);
+
+    // colocar api para conversão aqui
+
+    // Atualiza os elementos no HTML com o resultado
+    document.getElementById('resultado').textContent = resultado;
+    document.getElementById('valorConvertido').textContent = valorConvertido;
+
+});
+
+
 window.onload = carregarMoedas;
