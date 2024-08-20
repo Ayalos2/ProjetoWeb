@@ -3,33 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Conversor de Moedas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
+    <header>
         <h1>Conversor de Moedas</h1>
-    </div>
-    <form>
-        <label>Data Cotação</label>
-        <br>
-        
-        <label for="valor">Valor</label>
-        <input type="number" id="valor" name="valor" placeholder="0.00" inputmode="numeric" pattern="\(\d{2}\)\d{5}-\d{4}"> 
+    </header>
 
-        <label for="cmoeda">Converter de</label>
-        <Select id="cmoeda" name="cmoeda"> </Select>
+    <main> 
+        <form>
+            <div id="data-conversao">
+            <label>Data Cotação</label>
+            <br>
+            </div>
+            <div class="conversao">
+                
+            <label for="valor">Valor</label>
+            <input type="number" id="valor" name="valor" placeholder="0.00" inputmode="numeric" pattern="\(\d{2}\)\d{5}-\d{4}"> 
 
-        <input type="button" id="trocar" name="trocar" value="TROCAR">
-        
-        <label for="pmoeda">Para</label>
-        <Select id="pmoeda" name="pmoeda"> </Select>
-        <input type="button" id="calcular" name="calcular" value="CALCULAR">
-    </form>
-    <H2>Resultado da Conversão</H2>
-    <label>Conversão de</label>
-    <p id="resultado"></p>
-    <label for="">Valor a converter</label>
-    <p id = "valorConvertido"> </p>
-    <script src="script.js"></script>
+            <label for="cmoeda">Converter de</label>
+            <Select id="cmoeda" name="cmoeda"> </Select>
+
+            <input type="button" id="trocar" name="trocar" value="TROCAR">
+            
+            <label for="pmoeda">Para</label>
+            <Select id="pmoeda" name="pmoeda"> </Select>
+            <input type="button" id="calcular" name="calcular" value="CALCULAR">
+            </div>
+        </form>
+        <div class="resultadoConversao">
+
+        <H2>Resultado da Conversão</H2>
+        <label>Conversão de</label>
+        <p id="resultado"></p>
+        <label for="">Valor a converter</label>
+        <p id = "valorConvertido"> </p>
+        <script src="script.js"></script>
+
+        </div>
+
+    </main>
+
 </body>
 </html>
