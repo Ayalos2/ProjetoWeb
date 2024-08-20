@@ -50,5 +50,12 @@ document.getElementById('calcular').addEventListener('click', function() {
 
 });
 
+document.getElementById('trocar').addEventListener('click', function() {
+    const cmoeda = document.getElementById('cmoeda').selectedIndex;
+    const pmoeda = document.getElementById('pmoeda').selectedIndex;
+
+    document.getElementById('cmoeda').selectedIndex = pmoeda;
+    document.getElementById('pmoeda').selectedIndex = cmoeda;
+});
 
 window.onload = carregarMoedas;
