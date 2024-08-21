@@ -1,5 +1,28 @@
+import { createClient } from '@supabase/supabase-js';
+
 const url = 'https://economia.awesomeapi.com.br/xml/available/uniq';
 const urlConv = 'https://economia.awesomeapi.com.br/last/';
+
+const supabase_url='https://ozwkyjxewfttmigakxse.supabase.co';
+const supabase_key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im96d2t5anhld2Z0dG1pZ2FreHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNzQwMjksImV4cCI6MjAzOTc1MDAyOX0.0t4bXeSY3vAkvV_4nkWz3H_R3jPBQIBIxL4ZJkkPEb0';
+
+const supabase = createClient(supabase_url, supabase_key);
+
+const insertConversao = async (moedas) => {
+    const { data, error } = await supabase
+      .from('conversoes')
+      .insert({
+        moedas_conversao:'moedas'
+      });
+      console.log('Inseriu');
+    if (error) {
+      console.error('Erro ao inserir conversão:', error);
+      return;
+    }
+  
+    console.log('Conversão inserida com sucesso:', data);
+  };
+
 
 async function listamoedas(opcao,moedas) {
     for (let i = 0; i < moedas.length; i++) {
@@ -59,6 +82,7 @@ document.getElementById('calcular').addEventListener('click', function() {
     const valorConvertido = `${valor}`;
     // colocar api para conversão aqui
     valorMoedas(cmoeda,pmoeda,valor);
+    insertConversao(cmoeda+'-'+pmoeda);
     // Atualiza os elementos no HTML com o resultado
     document.getElementById('resultado').textContent = resultado;
 
