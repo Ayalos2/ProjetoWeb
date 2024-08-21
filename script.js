@@ -57,14 +57,8 @@ document.getElementById('calcular').addEventListener('click', function() {
 
     const resultado = `${cmoeda} para ${pmoeda}`;
     const valorConvertido = `${valor}`;
-
-    console.log(resultado);
-    console.log(valorConvertido);
-
     // colocar api para conversão aqui
     valorMoedas(cmoeda,pmoeda,valor);
-
-
     // Atualiza os elementos no HTML com o resultado
     document.getElementById('resultado').textContent = resultado;
 
