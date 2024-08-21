@@ -97,3 +97,13 @@ document.getElementById('trocar').addEventListener('click', function() {
 });
 
 window.onload = carregarMoedas;
+
+document.addEventListener('DOMContentLoaded', function(){
+  var dataAtual = new Date();
+  var dia = String(dataAtual.getDate()).padStart(2, '0');
+  var mes = String(dataAtual.getMonth()+1).padStart (2, '0');
+  var ano = dataAtual.getFullYear();
+
+  var dataCompleta = dia + '/' + mes + '/' + ano;
+document.getElementById('dataAtual').innerText= dataCompleta;
+});
