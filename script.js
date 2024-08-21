@@ -1,4 +1,5 @@
 const url = 'https://economia.awesomeapi.com.br/xml/available/uniq';
+const urlConv = 'https://economia.awesomeapi.com.br/last/';
 
 async function listamoedas(opcao,moedas) {
     for (let i = 0; i < moedas.length; i++) {
@@ -31,6 +32,24 @@ async function carregarMoedas() {
     }
 }
 
+async function valorMoedas(cmoeda,pmoeda,valor){
+    const moedas = cmoeda+'-'+pmoeda;
+    const url = urlConv+moedas;
+    const moeda = cmoeda+pmoeda;
+    console.log(url);
+    fetch(url)
+  .then(res => res.json())
+  .then(data => {
+    const bid = data[moeda].bid;
+    const valorConvertido = valor * bid;
+    console.log(`O valor convertido é: ${valorConvertido}`);
+    document.getElementById('valorConvertido').textContent = `${valorConvertido}`;
+  })
+  .catch(err => {
+    console.error('Erro ao buscar dados da API:', err);
+  });
+}
+
 document.getElementById('calcular').addEventListener('click', function() {
     const valor = document.getElementById('valor').value;
     const cmoeda = document.getElementById('cmoeda').value;
@@ -43,10 +62,11 @@ document.getElementById('calcular').addEventListener('click', function() {
     console.log(valorConvertido);
 
     // colocar api para conversão aqui
+    valorMoedas(cmoeda,pmoeda,valor);
+
 
     // Atualiza os elementos no HTML com o resultado
     document.getElementById('resultado').textContent = resultado;
-    document.getElementById('valorConvertido').textContent = valorConvertido;
 
 });
 
