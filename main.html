@@ -14,23 +14,26 @@
     <main> 
         <form>
             <div id="data-conversao">
-            <label>Data Cotação</label>
-            <br>
+                <label>Data Cotação:
+                 <span id="dataAtual"></span>
+                </label>
             </div>
+
             <div class="conversao">
+                    
+                <label for="valor">Valor</label>
+                <input type="number" id="valor" name="valor" placeholder="0.00" inputmode="numeric" pattern="\(\d{2}\)\d{5}-\d{4}"> 
+
+                <label for="cmoeda">Converter de</label>
+                <Select id="cmoeda" name="cmoeda"> </Select>
+
+                <input type="button" id="trocar" name="trocar" value="TROCAR">
                 
-            <label for="valor">Valor</label>
-            <input type="number" id="valor" name="valor" placeholder="0.00" inputmode="numeric" pattern="\(\d{2}\)\d{5}-\d{4}"> 
-
-            <label for="cmoeda">Converter de</label>
-            <Select id="cmoeda" name="cmoeda"> </Select>
-
-            <input type="button" id="trocar" name="trocar" value="TROCAR">
-            
-            <label for="pmoeda">Para</label>
-            <Select id="pmoeda" name="pmoeda"> </Select>
-            <input type="button" id="calcular" name="calcular" value="CALCULAR">
+                <label for="pmoeda">Para</label>
+                <Select id="pmoeda" name="pmoeda"> </Select>
+                <input type="button" id="calcular" name="calcular" value="CALCULAR">
             </div>
+
         </form>
         <div class="resultadoConversao">
 
