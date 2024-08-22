@@ -14,7 +14,7 @@ header{
     text-align: center;
     font-size: 36px;
     font-family: "Anton", sans-serif;
-    border-bottom: 5px solid #004d40;
+    border-bottom: 5px solid #004237;
     color: #fff;
 
 }
@@ -62,7 +62,7 @@ form {
     text-align: center;
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.185);
     height: 200px;
     display: flex; 
     flex-direction: column; 
