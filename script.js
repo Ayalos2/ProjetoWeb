@@ -90,6 +90,7 @@ async function valorMoedas(cmoeda,pmoeda,valor){
     document.getElementById('valorConvertido').textContent = `${valorConvertido}`;
   })
   .catch(err => {
+    document.getElementById('valorConvertido').textContent = 'Não há cotação dessa moeda';
     console.error('Erro ao buscar dados da API:', err);
   });
 }
@@ -120,7 +121,6 @@ document.getElementById('calcular').addEventListener('click', function() {
     // colocar api para conversão aqui
     const moedas = cmoeda+'-'+pmoeda;
     valorMoedas(cmoeda,pmoeda,valor);
-    insertConversao(moedas);
 
     const data = {
       moedas_conversao: moedas
