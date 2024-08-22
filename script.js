@@ -1,27 +1,29 @@
-import { createClient } from '@supabase/supabase-js';
 
 const url = 'https://economia.awesomeapi.com.br/xml/available/uniq';
 const urlConv = 'https://economia.awesomeapi.com.br/last/';
 
-const supabase_url='https://ozwkyjxewfttmigakxse.supabase.co';
-const supabase_key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im96d2t5anhld2Z0dG1pZ2FreHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNzQwMjksImV4cCI6MjAzOTc1MDAyOX0.0t4bXeSY3vAkvV_4nkWz3H_R3jPBQIBIxL4ZJkkPEb0';
+const URL_SUPA = "https://ozwkyjxewfttmigakxse.supabase.co/rest/v1/conversoes";
+const HEADERS = {
+    "Content-Type":"application/json",
+    'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im96d2t5anhld2Z0dG1pZ2FreHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNzQwMjksImV4cCI6MjAzOTc1MDAyOX0.0t4bXeSY3vAkvV_4nkWz3H_R3jPBQIBIxL4ZJkkPEb0',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im96d2t5anhld2Z0dG1pZ2FreHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNzQwMjksImV4cCI6MjAzOTc1MDAyOX0.0t4bXeSY3vAkvV_4nkWz3H_R3jPBQIBIxL4ZJkkPEb0'
+}
 
-const supabase = createClient(supabase_url, supabase_key);
-
-const insertConversao = async (moedas) => {
-    const { data, error } = await supabase
-      .from('conversoes')
-      .insert({
-        moedas_conversao:'moedas'
-      });
-      console.log('Inseriu');
-    if (error) {
-      console.error('Erro ao inserir conversão:', error);
-      return;
+const insertConversao = async (data) => {
+  try {
+    const response = await fetch(URL_SUPA, {
+        method: 'POST',
+        headers: HEADERS,
+        body: JSON.stringify(data)
+      }
+    );
+    if (!response.status === 201) {
+      throw new Error(`Response status: ${response.status}`);
     }
-  
-    console.log('Conversão inserida com sucesso:', data);
-  };
+  } catch (error) {
+      throw new Error(error.message);
+  }
+}
 
 
 async function listamoedas(opcao,moedas) {
@@ -81,8 +83,15 @@ document.getElementById('calcular').addEventListener('click', function() {
     const resultado = `${cmoeda} para ${pmoeda}`;
     const valorConvertido = `${valor}`;
     // colocar api para conversão aqui
+    const moedas = cmoeda+'-'+pmoeda;
     valorMoedas(cmoeda,pmoeda,valor);
-    insertConversao(cmoeda+'-'+pmoeda);
+    insertConversao(moedas);
+
+    const data = {
+      moedas_conversao: moedas
+    }
+
+    insertConversao(data);
     // Atualiza os elementos no HTML com o resultado
     document.getElementById('resultado').textContent = resultado;
 
