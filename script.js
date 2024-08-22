@@ -9,6 +9,25 @@ const HEADERS = {
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im96d2t5anhld2Z0dG1pZ2FreHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNzQwMjksImV4cCI6MjAzOTc1MDAyOX0.0t4bXeSY3vAkvV_4nkWz3H_R3jPBQIBIxL4ZJkkPEb0'
 }
 
+const getConversoes = async () => {
+  try {
+    const response = await fetch(URL_SUPA + '?order=id.desc&limit=10', {
+        method: 'GET',
+        headers: HEADERS       
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+    const json = await response.json();
+    adicionaTabela(json);
+
+  } catch (error) {
+      console.error(error.message);
+  }
+}
+
+
 const insertConversao = async (data) => {
   try {
     const response = await fetch(URL_SUPA, {
@@ -75,6 +94,23 @@ async function valorMoedas(cmoeda,pmoeda,valor){
   });
 }
 
+const adicionaTabela = (data) => {
+  console.log(data);
+  const tableBody = document.getElementById('moedasConvertidas').querySelector('tbody');
+  tableBody.innerHTML = ''; // Limpa a tabela antes de adicionar os dados
+
+  data.forEach(item => {
+    const row = document.createElement('tr');
+
+    const moedaCell = document.createElement('td');
+    moedaCell.textContent = item.moedas_conversao;
+    row.appendChild(moedaCell);
+
+    tableBody.appendChild(row);
+  });
+}
+
+
 document.getElementById('calcular').addEventListener('click', function() {
     const valor = document.getElementById('valor').value;
     const cmoeda = document.getElementById('cmoeda').value;
@@ -105,7 +141,6 @@ document.getElementById('trocar').addEventListener('click', function() {
     document.getElementById('pmoeda').selectedIndex = cmoeda;
 });
 
-window.onload = carregarMoedas;
 
 document.addEventListener('DOMContentLoaded', function(){
   var dataAtual = new Date();
@@ -116,3 +151,5 @@ document.addEventListener('DOMContentLoaded', function(){
   var dataCompleta = dia + '/' + mes + '/' + ano;
 document.getElementById('dataAtual').innerText= dataCompleta;
 });
+
+window.onload = () => {carregarMoedas(),getConversoes()}
