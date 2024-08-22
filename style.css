@@ -57,7 +57,7 @@ form {
     align-items: flex-start;
     
 }
-.conversao,input{
+.conversao input{
     margin: 0 10px;
     text-align: center;
 }
