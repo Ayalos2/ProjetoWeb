@@ -95,7 +95,6 @@ async function valorMoedas(cmoeda,pmoeda,valor){
 }
 
 const adicionaTabela = (data) => {
-  console.log(data);
   const tableBody = document.getElementById('moedasConvertidas').querySelector('tbody');
   tableBody.innerHTML = ''; // Limpa a tabela antes de adicionar os dados
 
