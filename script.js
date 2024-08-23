@@ -118,7 +118,7 @@ document.getElementById('calcular').addEventListener('click', function() {
 
     const resultado = `${cmoeda} para ${pmoeda}`;
     const valorConvertido = `${valor}`;
-    // colocar api para conversão aqui
+    
     const moedas = cmoeda+'-'+pmoeda;
     valorMoedas(cmoeda,pmoeda,valor);
 

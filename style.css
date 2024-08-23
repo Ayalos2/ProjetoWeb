@@ -126,11 +126,11 @@ footer {
 .footer-title {
     margin-bottom: 20px;
     font-size: 1.5em;
-    color: #333;
+    color: #333; 
 }
 
 table {
-    margin: 0 auto; /* Centraliza a tabela */
+    margin: 0 auto; /* Centraliza a tabela */ 
     border-collapse: collapse;
     width: 80%;
     max-width: 800px;
